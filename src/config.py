@@ -1,0 +1,14 @@
+SEED = 69
+ID = "user_id"
+T = "treatment_flg"
+Y = "rec_spend"
+CATS = ["communication_type"]
+DROP = [ID, T, Y]
+ITERS = 1000
+LR = 0.05
+DEPTH = 6
+ES = 50
+FOLDS = 5
+K = 0.1
+BOOT = 1000
+ALPHA = 0.05
