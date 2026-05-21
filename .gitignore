@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+catboost_info/
+data/*.parquet
+data/*.csv
+!data/.gitkeep
+artifacts/*.cbm
+artifacts/*.json
+!artifacts/.gitkeep
