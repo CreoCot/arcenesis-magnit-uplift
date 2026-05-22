@@ -5,9 +5,19 @@ import polars as pl
 from src.config import ID, SEED
 
 p = argparse.ArgumentParser()
-p.add_argument("--test", required=True)
-p.add_argument("--out", required=True)
-p.add_argument("--stub", action="store_true")
+p.add_argument(
+    "--test",
+    default="data/test.parquet",
+    help="Path to input test parquet file (default: data/test.parquet)",
+)
+p.add_argument(
+    "--out",
+    default="artifacts/predictions.csv",
+    help="Path to save predictions CSV (default: artifacts/predictions.csv)",
+)
+p.add_argument(
+    "--stub", action="store_true", help="Flag to run with random stub predictions"
+)
 args = p.parse_args()
 
 df = pl.read_parquet(args.test)
