@@ -1,0 +1,19 @@
+version: '3'
+
+vars:
+  IMAGE_NAME: magnit-uplift
+
+tasks:
+  default:
+    cmds: 
+      - task --list
+
+  build:
+    desc: "Сборка Docker-образа"
+    cmds:
+      - docker build -t {{.IMAGE_NAME}} .
+
+  test:
+    desc: "Сборка, запуск и валидация заглушки"
+    cmds:
+      - uv run python scripts/test_pipeline.py
