@@ -5,15 +5,30 @@ vars:
 
 tasks:
   default:
+    silent: true
     cmds: 
       - task --list
 
   build:
     desc: "Сборка Docker-образа"
+    silent: true
     cmds:
       - docker build -t {{.IMAGE_NAME}} .
 
+  train:
+    desc: "Локальное обучение моделей на полном датасете"
+    silent: true
+    cmds:
+      - uv run python -m src.train --train data/train.parquet --out artifacts/
+
+  predict:
+    desc: "Локальный расчет реального аплифта на обученных моделях"
+    silent: true
+    cmds:
+      - uv run python -m src.predict --test data/test.parquet --models artifacts/ --out artifacts/predictions.csv
+
   test:
     desc: "Сборка, запуск и валидация заглушки"
+    silent: true
     cmds:
       - uv run python scripts/test_pipeline.py
