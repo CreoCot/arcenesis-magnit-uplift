@@ -1,8 +1,10 @@
 import argparse
 import numpy as np
 import polars as pl
+from pathlib import Path
 
 from src.config import ID, SEED
+from src.models import load_models, predict_uplift
 
 p = argparse.ArgumentParser()
 p.add_argument(
@@ -31,8 +33,13 @@ if args.stub:
     np.random.seed(SEED)
     scores = np.random.uniform(-67, 67, size=len(df))
 else:
-    raise NotImplementedError("real predict позже")
+    models = load_models(args.models)
+    X_test = df.to_pandas()
+    scores = predict_uplift(models, X_test)
 
 out = pl.DataFrame({ID: df[ID], "uplift_score": scores})
-out.write_csv(args.out)
-print(f"saved {len(out)} rows")
+out_path = Path(args.out)
+out_path.parent.mkdir(parents=True, exist_ok=True)
+out.write_csv(out_path)
+
+print(f"✅  Saved {len(out)} rows")
