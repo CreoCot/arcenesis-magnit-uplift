@@ -37,7 +37,6 @@ def validate_results(pred_path: Path, test_path: Path, pred2_path: Path) -> None
 
     df_pred = pl.read_csv(pred_path)
 
-    # Сверхбыстрое получение количества строк через метаданные Parquet (защита от OOM)
     test_len = pl.scan_parquet(test_path).select(pl.len()).collect().item()
 
     # Проверка 1: совпадение строк
@@ -107,7 +106,6 @@ def main():
 
     run_cmd(["docker", "build", "-t", IMAGE_NAME, "."], "Сборка Docker-образа")
 
-    # Используем абсолютные пути внутри контейнера (/app/...) для отказоустойчивости
     run_cmd(
         [
             "docker",
