@@ -16,6 +16,11 @@ p.add_argument(
     help="Path to save predictions CSV (default: artifacts/predictions.csv)",
 )
 p.add_argument(
+    "--models",
+    default="artifacts/",
+    help="Path to directory with saved models",
+)
+p.add_argument(
     "--stub", action="store_true", help="Flag to run with random stub predictions"
 )
 args = p.parse_args()
