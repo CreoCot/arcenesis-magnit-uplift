@@ -4,7 +4,7 @@ FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim AS builder
 WORKDIR /app
 
 # Environment variables
-ENV UV_COMPILE_BYTECODE=1 \
+ENV UV_COMPILE_BYTECODE=0 \
     UV_LINK_MODE=copy \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
