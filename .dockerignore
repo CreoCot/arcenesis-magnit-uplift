@@ -1,0 +1,35 @@
+# IDE
+.vscode/
+.idea
+
+# Скрипты и автоматизация
+scripts/
+Taskfile.yaml
+Taskfile.yml
+
+# Ридмишники и лицензия
+README.md
+LICENSE
+
+# Конфиги контроля версий
+.gitattributes
+
+# Виртуальное окружение и кэш
+.venv/
+.uv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Данные и гит
+data/
+.git/
+.gitignore
+
+# Логи 
+*.log
+.DS_Store
+Thumbs.db
