@@ -27,6 +27,18 @@ tasks:
     cmds:
       - uv run python -m src.predict --test data/test.parquet --models artifacts/ --out artifacts/predictions.csv
 
+  docker-predict:
+    desc: "Запуск инференса внутри Docker-контейнера"
+    silent: true
+    cmds:
+      - |
+        docker run --rm \
+          -v "{{.USER_WORKING_DIR}}/data:/app/data" \
+          -v "{{.USER_WORKING_DIR}}/artifacts:/app/artifacts" \
+          {{.IMAGE_NAME}} \
+          --test /app/data/test.parquet \
+          --out /app/artifacts/predictions.csv
+
   test:
     desc: "Сборка, запуск и валидация заглушки"
     silent: true
